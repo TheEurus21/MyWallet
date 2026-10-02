@@ -1,3 +1,4 @@
+using Kif;
 using Kif.Data;
 using Kif.Services;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,8 @@ if (!decimal.TryParse(tax, out decimal taxRate))
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddScoped<WalletService>(provider =>
-{
-    var dbContext = provider.GetRequiredService<AppDbContext>();
-    return new WalletService(dbContext, taxRate);
-});
+builder.Services.Configure<TaxSettings>(builder.Configuration.GetSection("TAX"));
+builder.Services.AddScoped<WalletService>();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("DB"));
 var app = builder.Build();
 

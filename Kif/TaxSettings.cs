@@ -1,6 +1,6 @@
-﻿namespace Kif
+﻿namespace Kif;
+
+public class TaxSettings
 {
-    public class TaxSettings
-    {
-    }
+    public decimal Rate {  get; set; }
 }
