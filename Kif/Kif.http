@@ -1,0 +1,6 @@
+@Kif_HostAddress = http://localhost:5101
+
+GET {{Kif_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
